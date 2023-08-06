@@ -4,7 +4,7 @@
 @endsection
 @section('content')
     <div class="container mt-3">
-        <h4 class="fw-bold py-3 mb-3"><span class="text-muted fw-light">Forms/</span> All Category</h4>
+        <h4 class="fw-bold py-3 mb-3"><span class="text-muted fw-light">Page /</span> All Category</h4>
         <div class="card">
             <h5 class="card-header">Available Category Information</h5>
             @if (session()->has('message'))
@@ -35,7 +35,7 @@
                                 <td>
                                     <div class="d-flex col-sm-4">
                                         <a class="dropdown-item" href="{{ route('editcategory', $category->id ) }}"><i class="bx bx-edit-alt me-1"></i> Edit</a>
-                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
+                                        <a class="dropdown-item" href="{{ route('deletecategory', $category->id ) }}"><i class="bx bx-trash me-1"></i> Delete</a>
                                     </div>
                                 </td>
                             </tr>
