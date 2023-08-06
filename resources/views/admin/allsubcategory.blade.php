@@ -33,8 +33,8 @@
                                 <td>{{ $subcategory->product_count }}</td>
                                 <td>
                                     <div class="d-flex col-sm-4">
-                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a>
-                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
+                                        <a class="dropdown-item" href="{{ route('editsubcategory', $subcategory->id) }}"><i class="bx bx-edit-alt me-1"></i> Edit</a>
+                                        <a class="dropdown-item" href="{{ route('deletesubcategory', $subcategory->id) }}"><i class="bx bx-trash me-1"></i> Delete</a>
                                     </div>
                                 </td>
                             </tr>
