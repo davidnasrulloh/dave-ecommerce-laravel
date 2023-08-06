@@ -7,30 +7,39 @@
         <h4 class="fw-bold py-3 mb-3"><span class="text-muted fw-light">Forms/</span> All Category</h4>
         <div class="card">
             <h5 class="card-header">Available Category Information</h5>
+            @if (session()->has('message'))
+                <div class="alert alert-success">
+                    {{ session()->get('message') }}
+                </div>
+            @endif
             <div   div class="table-responsive text-nowrap">
                 <table class="table">
                     <thead class="table-light">
                         <tr>
                             <th>Id Category</th>
                             <th>Category Name</th>
+                            <th>Slug</th>
                             <th>Sub Category</th>
                             <th>Product</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
-                        <tr>
-                            <td>1</td>
-                            <td class="col-sm-4">Electronics</td>
-                            <td>10</td>
-                            <td>100</td>
-                            <td>
-                                <div class="d-flex col-sm-4">
-                                    <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a>
-                                    <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
-                                </div>
-                            </td>
-                        </tr>
+                        @foreach ($categories as $category)
+                            <tr>
+                                <td>{{ $category->id }}</td>
+                                <td class="col-sm-2">{{ $category->category_name }}</td>
+                                <td class="col-sm-2">{{ $category->slug }}</td>
+                                <td>{{ $category->subcategory_count }}</td>
+                                <td>{{ $category->product_count }}</td>
+                                <td>
+                                    <div class="d-flex col-sm-4">
+                                        <a class="dropdown-item" href="{{ route('editcategory', $category->id ) }}"><i class="bx bx-edit-alt me-1"></i> Edit</a>
+                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
