@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 <div class="container mt-3">
-    <h4 class="fw-bold py-3 mb-3"><span class="text-muted fw-light">Forms/</span> Add Product</h4>
+    <h4 class="fw-bold py-3 mb-3"><span class="text-muted fw-light">Page /</span> Add Product</h4>
     <div class="row">
         <div class="col-xxl">
             <div class="card mb-4">
@@ -13,7 +13,8 @@
                 <small class="text-muted float-end">Input Information</small>
             </div>
             <div class="card-body">
-                <form action="" method="POST">
+                <form action="{{ route('storeproduct') }}" method="POST" enctype="multipart/form-data" >
+                    @csrf
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="product_name">Product Name</label>
                         <div class="col-sm-10">
@@ -22,61 +23,61 @@
                     </div>
 
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label" for="product_price">Product Price</label>
+                        <label class="col-sm-2 col-form-label" for="price">Product Price</label>
                         <div class="col-sm-10">
-                            <input type="number" class="form-control" id="product_price" name="product_price" placeholder="Rp. 50.000" />
+                            <input type="number" class="form-control" id="price" name="price" placeholder="Rp. 50.000" />
                         </div>
                     </div>
 
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label" for="product_quantity">Product Quantity</label>
+                        <label class="col-sm-2 col-form-label" for="quantity">Product Quantity</label>
                         <div class="col-sm-10">
-                            <input type="number" class="form-control" id="product_quantity" name="product_quantity" placeholder="50" />
+                            <input type="number" class="form-control" id="quantity" name="quantity" placeholder="50" />
                         </div>
                     </div>
 
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label" for="product_shortdescription">Product Short Description</label>
+                        <label class="col-sm-2 col-form-label" for="product_short_des">Product Short Description</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="product_shortdescription" name="product_shortdescription" placeholder="Short Description Product" />
+                            <input type="text" class="form-control" id="product_short_des" name="product_short_des" placeholder="Short Description Product" />
                         </div>
                     </div>
 
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label" for="product_longdescription">Product Long Description</label>
+                        <label class="col-sm-2 col-form-label" for="product_long_des">Product Long Description</label>
                         <div class="col-sm-10">
-                            <textarea type="text" class="form-control" id="product_longdescription" name="product_longdescription" placeholder="Long Description Product" rows="5" ></textarea>
+                            <textarea type="text" class="form-control" id="product_long_des" name="product_long_des" placeholder="Long Description Product" rows="5" ></textarea>
                         </div>
                     </div>
 
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label" for="category">Select Category</label>
+                        <label class="col-sm-2 col-form-label" for="product_category_id">Select Category</label>
                         <div class="col-sm-10">
-                            <select class="form-select" id="category" name="category" aria-label="Default select example">
-                                <option selected>Select Category Here</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                            <select class="form-select" id="product_category_id" name="product_category_id" aria-label="Default select example">
+                                <option selected>Select Product Category</option>
+                                @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
 
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label" for="subcategory">Select Category</label>
+                        <label class="col-sm-2 col-form-label" for="product_subcategory_id">Select Category</label>
                         <div class="col-sm-10">
-                            <select class="form-select" id="subcategory" name="subcategory" aria-label="Default select example">
+                            <select class="form-select" id="product_subcategory_id" name="product_subcategory_id" aria-label="Default select example">
                                 <option selected>Select Sub Category Here</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                                @foreach ($subcategories as $subcategory)
+                                    <option value="{{ $subcategory->id }}">{{ $subcategory->subcategory_name }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
 
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label" for="product_quantity">Upload Product Image</label>
+                        <label class="col-sm-2 col-form-label" for="product_img">Upload Product Image</label>
                         <div class="col-sm-10">
-                            <input class="form-control" type="file" id="formFile" />                        
+                            <input class="form-control" type="file" id="product_img" name="product_img" />                        
                         </div>
                     </div>
                     

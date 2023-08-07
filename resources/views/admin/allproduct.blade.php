@@ -7,6 +7,11 @@
         <h4 class="fw-bold py-3 mb-3"><span class="text-muted fw-light">Forms/</span> All Product</h4>
         <div class="card">
             <h5 class="card-header">Available All Product Information</h5>
+            @if (session()->has('message'))
+                <div class="alert alert-success">
+                    {{ session()->get('message') }}
+                </div>
+            @endif
             <div   div class="table-responsive text-nowrap">
                 <table class="table">
                     <thead class="table-light">
