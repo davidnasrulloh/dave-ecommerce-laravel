@@ -24,18 +24,26 @@
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
-                        <tr>
-                            <td>1</td>
-                            <td class="col-sm-5">Fan</td>
-                            <td class="col-sm-2"><img src="" alt=""></td>
-                            <td>100</td>
-                            <td>
-                                <div class="d-flex col-sm-4">
-                                    <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a>
-                                    <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
-                                </div>
-                            </td>
-                        </tr>
+
+                        @foreach ($products as $product)
+                            <tr>
+                                <td>{{ $product->id }}</td>
+                                <td class="col-sm-3">{{ $product->product_name }}</td>
+                                <td class="col-sm-2">
+                                    <img src="{{ asset($product->product_img) }}" style="width: 100px" alt="">
+                                    <a class="btn btn-primary ms-1" href="{{ route('editproductimg', $product->id) }}"><i class="bx bx-edit-alt me-1"></i> Update Image</a>
+                                </td>
+                                <td>{{ $product->price }}</td>
+                                <td>
+                                    <div class="d-flex col-sm-4">
+                                        <a class="dropdown-item" href="{{ route('editproduct', $product->id) }}"><i class="bx bx-edit-alt me-1"></i> Edit</a>
+                                        <a class="dropdown-item" href="{{ route('deleteproduct', $product->id) }}"><i class="bx bx-trash me-1"></i> Delete</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+
+                        
                     </tbody>
                 </table>
             </div>
