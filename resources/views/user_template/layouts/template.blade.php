@@ -46,11 +46,11 @@
                     <div class="col-sm-12">
                         <div class="custom_menu">
                             <ul>
-                                <li><a href="#">Best Sellers</a></li>
-                                <li><a href="#">Gift Ideas</a></li>
-                                <li><a href="#">New Releases</a></li>
-                                <li><a href="#">Today Deals</a></li>
-                                <li><a href="#">Customer Service</a></li>
+                            <li><a href="{{ route('home') }}">Home</a></li>
+                            <li><a href="{{ route('category') }}">Category</a></li>
+                            <li><a href="{{ route('newrelease') }}">New Releases</a></li>
+                            <li><a href="{{ route('todaysdeal') }}">Todays Deals</a></li>
+                            <li><a href="{{ route('customerservice') }}">Customer Service</a></li>
                             </ul>
                         </div>
                     </div>
@@ -172,6 +172,13 @@
             <!-- banner section end -->
         </div>
         <!-- banner bg main end -->
+
+        <!-- Content wrapper -->
+        <div class="container">
+            @yield('content')
+        </div>
+        <!-- End Content wrapper -->
+
         <!-- fashion section start -->
         <div class="fashion_section">
             <div id="main_slider" class="carousel slide" data-ride="carousel">
@@ -595,6 +602,8 @@
             </div>
         </div>
         <!-- jewellery  section end -->
+
+
         <!-- footer section start -->
         <div class="footer_section layout_padding">
             <div class="container">
