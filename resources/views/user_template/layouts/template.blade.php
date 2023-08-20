@@ -180,14 +180,14 @@
 
         <!-- Content wrapper -->
         <div class="">
-            <div class="container py-4 my-4">
+            <div class="container">
                 @yield('content')
             </div>
         </div>
         <!-- End Content wrapper -->
 
         
-        <!-- electronic section start -->
+        {{--  <!-- electronic section start -->
         <div class="fashion_section">
             <div id="electronic_main_slider" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
@@ -470,7 +470,7 @@
                 </div>
             </div>
         </div>
-        <!-- jewellery  section end -->
+        <!-- jewellery  section end -->  --}}
 
 
         <!-- footer section start -->
