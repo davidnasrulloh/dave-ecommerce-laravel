@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\ShippingInfo;
 use Illuminate\Http\Request;
@@ -58,6 +59,9 @@ class ClientController extends Controller
     }
 
     public function AddShippingAddress(Request $request){
+        $userid = Auth::id();
+        ShippingInfo::where('user_id', $userid)->delete();
+
         ShippingInfo::insert([
             'user_id' => Auth::id(),
             'phone_number' => $request->phone_number,
@@ -76,12 +80,36 @@ class ClientController extends Controller
         return view('user_template.checkout', compact('cart_items', 'shipping_address'));
     }
 
+    public function PlaceOrder(){
+        $user_id = Auth::id();
+        $cart_items = Cart::where('user_id', $user_id)->get();
+        $shipping_address = ShippingInfo::where('user_id', $user_id)->first();
+        
+        foreach($cart_items as $item){
+            Order::insert([
+                'user_id' => $user_id,
+                'sh_phone_number' => $shipping_address->phone_number,
+                'sh_city' => $shipping_address->city_name,
+                'sh_postal_code' => $shipping_address->postal_code,
+                'product_id' => $item->product_id,
+                'quantity' => $item->quantity,
+                'total_price' => $item->price
+            ]);
+            $id = $item->id;
+            Cart::findOrFail($id)->delete();
+        }
+
+        return redirect()->route('pendingorders')->with('message', 'Your order has been place successfully processed');
+    }
+
     public function UserProfile(){
         return view('user_template.userprofile');
     }
 
     public function PendingOrders(){
-        return view('user_template.pendingorders');
+        $user_id = Auth::id();
+        $pending_orders = Order::where('status', 'pending')->where('user_id', $user_id)->latest()->get();
+        return view('user_template.pendingorders', compact('pending_orders'));
     }
 
     public function History(){

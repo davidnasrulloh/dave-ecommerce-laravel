@@ -42,6 +42,7 @@ Route::middleware(['auth', 'role:user'])->group(function (){
         Route::get('/shipping-address', 'ShippingAddress')->name('shippingaddress');
         Route::get('/checkout', 'Checkout')->name('checkout');
         Route::post('/add-shipping-address', 'AddShippingAddress')->name('addshippingaddress');
+        Route::post('/place-order', 'PlaceOrder')->name('placeorder');
         Route::get('/user-profile', 'UserProfile')->name('userprofile');
         Route::get('/user-profile/pending-orders', 'PendingOrders')->name('pendingorders');
         Route::get('/user-profile/history', 'History')->name('history');
@@ -93,6 +94,8 @@ Route::middleware(['auth', 'role:admin'])->group(function(){
     });
     Route::controller(OrderController::class)->group(function(){
         Route::get('/admin/pending-order', 'PendingOrder')->name('pendingorder');
+        Route::get('/admin/confirm-status/{id}', 'ConfirmStatus')->name('confirmstatus');
+        Route::get('/admin/reject-status/{id}', 'RejectStatus')->name('rejectstatus');
         Route::get('/admin/complete-order', 'CompleteOrder')->name('completeorders');
         Route::get('/admin/cancel-order', 'CancelOrder')->name('cancelorders');
     });
