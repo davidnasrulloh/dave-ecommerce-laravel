@@ -179,10 +179,8 @@
         <!-- banner bg main end -->
 
         <!-- Content wrapper -->
-        <div class="">
-            <div class="container">
-                @yield('content')
-            </div>
+        <div class="container">
+            @yield('content')
         </div>
         <!-- End Content wrapper -->
 
